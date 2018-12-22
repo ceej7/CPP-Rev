@@ -30,6 +30,31 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
    ![img](./img/Img04-Keywords.png)
    - `*` for C++98
    - `**` for C++11
+3. MutiFiles
+   - It will work.
+     - `main.cpp`
+        ```C++
+        #include <iostream>
+        int add(int x, int y); //need in main.cpp
+        int main()
+        {
+          std::cout << "The sum of 3 and 4 is: " << add(3, 4) << std::endl;
+          return 0;
+        }
+        ```
+     - `add.cpp`
+        ```C++
+        int add(int x, int y)
+        {
+          return x + y;
+        }
+        ```
+   - However, consider the another file `addB.cpp` with `add` function. 
+   - Link Error. Solution : `namespace`
+   - ```C++
+
+   
+
 
 
 
