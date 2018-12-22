@@ -1,3 +1,7 @@
+# vs
+./.vs
+./CPP-Rev/x64
+./x64
 # Prerequisites
 *.d
 
