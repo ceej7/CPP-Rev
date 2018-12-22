@@ -1,7 +1,5 @@
-namespace B
+#include "addB.h"
+int B::add(int x, int y)
 {
-	int add(int x, int y)
-	{
-		return x + y;
-	}
+	return x + y;
 }

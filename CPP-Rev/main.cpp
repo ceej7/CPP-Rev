@@ -1,9 +1,10 @@
 #include <iostream>
-#include "add.cpp"
-int A::add(int x, int y); // needed so main.cpp knows that add() is a function declared elsewhere
-
+#include "addA.h"
+#include "addB.h"
 int main()
 {
 	std::cout << "The sum of 3 and 4 is: " << A::add(3, 4) << std::endl;
+	std::cout << "The sum of 3 and 4 is: " << B::add(3, 4) << std::endl;
+	system("pause");
 	return 0;
 }

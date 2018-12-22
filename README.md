@@ -49,9 +49,78 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
           return x + y;
         }
         ```
-   - However, consider the another file `addB.cpp` with `add` function. 
-   - Link Error. Solution : `namespace`
-   - ```C++
+4. Headfiles
+   1. First, header guard
+      ```C++
+      #ifndef ADD_H //any unique name
+      #define ADD_H //if not define, define it to prevent multi-define
+      //TODO:
+      #endif
+      ``` 
+   2. However, consider the another file `addB.cpp` with `add` function. 
+   3. Link Error: multiple `add` function.------->Solution : `namespace`
+      - `main.cpp`
+        ```C++
+        #include <iostream>
+        #include "addA.h"
+        #include "addB.h"
+        int main()
+        {
+          std::cout << "The sum of 3 and 4 is: " << A::add(3, 4) << std::endl;
+          std::cout << "The sum of 3 and 4 is: " << B::add(3, 4) << std::endl;
+          system("pause");
+          return 0;
+        }
+        ```
+      - `addA.h`
+        ```C++
+        namespace A
+        {
+          int add(int x, int y);
+        }
+        ```
+      - `addA.cpp`
+        ```C++
+        #include "addA.h"
+
+        int A::add(int x, int y)
+        {
+          return 0;
+        }
+        ```
+      - `addB.h`
+        ```C++
+        namespace B
+        {
+          int add(int x, int y);
+        }
+        ```
+      - `addB.cpp`
+        ```C++
+        #include "addB.h"
+        int B::add(int x, int y)
+        {
+          return x + y;
+        }
+        ```
+   4. Why do we include `.h` instread of `.cpp`? [See reference](https://stackoverflow.com/questions/19547091/including-cpp-files)
+        - What `include` does is copying all the contents from the file included.
+        - Example:
+           ```C++
+           int foo(int a){ // from include "foop.cpp"
+           return ++a;
+           }
+           int main(int argc, char *argv[])
+           {
+             int x=42;
+             std::cout << x <<std::endl;
+             std::cout << foo(x) << std::endl;
+             return 0;
+           }
+           ```
+         - Thus, `foo` function exists in both main.cpp and foop.cpp, duplicated.
+    5. `< >` or `" "`?
+        - Use angled brackets `< >` to include header files that come with the compiler. Use double quotes `" "` to include any other header files.
 
    
 
