@@ -120,7 +120,8 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
            ```
          - Thus, `foo` function exists in both main.cpp and foop.cpp, duplicated.
     5. `< >` or `" "`?
-        - Use angled brackets `< >` to include header files that come with the compiler. Use double quotes `" "` to include any other header files.
+        - Use angled brackets `< >` to include header files that come with the compiler. 
+        - Use double quotes `" "` to include any other header files.
 
    
 
