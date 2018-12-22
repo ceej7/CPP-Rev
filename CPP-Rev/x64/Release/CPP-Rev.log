@@ -1,3 +1,0 @@
-﻿  main.cpp
-addC.obj : error LNK2005: "int __cdecl C::add(int,int)" (?add@C@@YAHHH@Z) already defined in addC.obj
-C:\Users\ceej_\Desktop\CPP-Rev\x64\Release\CPP-Rev.exe : fatal error LNK1169: one or more multiply defined symbols found
