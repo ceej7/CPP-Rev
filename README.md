@@ -57,6 +57,12 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
       //TODO:
       #endif
       ``` 
+      - Note: the macro's scope is within the single file and preprocessed
+      - Thus: it prevents multi defining in single file not in the whole proj
+      - Alternative
+        ```C++
+        #pragma once
+        ```
    2. However, consider the another file `addB.cpp` with `add` function. 
    3. Link Error: multiple `add` function.------->Solution : `namespace`
       - `main.cpp`

@@ -18,21 +18,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="add.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="addB.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="addC.cpp">
+    <ClCompile Include="addA.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="add.h">
+    <ClInclude Include="addB.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="addB.h">
+    <ClInclude Include="addA.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -116,13 +116,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="add.cpp" />
+    <ClCompile Include="addA.cpp" />
     <ClCompile Include="addB.cpp" />
-    <ClCompile Include="addC.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="add.h" />
+    <ClInclude Include="addA.h" />
     <ClInclude Include="addB.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
