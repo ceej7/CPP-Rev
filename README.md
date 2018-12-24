@@ -128,8 +128,49 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
     5. `< >` or `" "`?
         - Use angled brackets `< >` to include header files that come with the compiler. 
         - Use double quotes `" "` to include any other header files.
-
-   
+## Part3. Variables and Fundamental Data Types
+  1. Variable initialization
+      - Copy initialization
+        ```C++
+        int nValue = 5;
+        ```
+      - Direct initialization
+        ```C++
+        int nValue(5);
+        ```
+      - Performance  
+        Generally, the **direct initialization** out-performes for some *data types* and come with some benefits among *classes*
+  2. Uniform initialization in C++11
+      - Because C++ grew organically, the copy initialization and direct initialization forms only work for some types of variables (for example, you can’t use either of these forms to initialize a list of values).
+      - In an attempt to provide a single initialization mechanism that will work with all data types, C++11 adds a new form of initialization called uniform initialization (also called brace initialization):
+        ```C++
+        int value{5}; // uniform initialization
+        ```
+      - Initializing a variable with an empty brace indicates default initialization. Default initialization initializes the variable to zero (or empty, if that’s more appropriate for a given type).
+        ```C++
+        int value{}; // default initialization to 0
+        ```
+      - Uniform initialization has the added benefit of **disallowing “narrowing” type conversions**. This means that if you try to use uniform initialization to initialize a variable with a value it can not safely hold, the compiler will throw an warning or error. For example:
+        ``` C++
+        int value{4.5}; // error: an integer variable can not hold a non-integer value
+        ```
+        > Rule: If you’re using a C++11 compatible compiler, favor uniform initialization
+    3. `size_t`
+        ```C++
+        size_t sz_t=sizeof(int) //usually 32-bit unsigned integral value.
+        ```
+    4. The fixed-width integers (`cstdint` in `C++11`)
+        |Type     |Length       |
+        |---------|------|
+        |int8_t	  |1 byte signed|
+        |uint8_t	|1 byte unsigned|
+        |int16_t	|2 byte signed|
+        |uint16_t	|2 byte unsigned|
+        |int32_t	|4 byte signed	|
+        |uint32_t	|4 byte unsigned|
+        |int64_t	|8 byte signed|
+        |uint64_t	|8 byte unsigned|
+    1. 
 
 
 
