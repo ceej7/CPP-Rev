@@ -170,7 +170,6 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
         |uint32_t	|4 byte unsigned|
         |int64_t	|8 byte signed|
         |uint64_t	|8 byte unsigned|
-    1. 
 
 
 
