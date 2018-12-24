@@ -159,8 +159,9 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
         ```C++
         size_t sz_t=sizeof(int) //usually 32-bit unsigned integral value.
         ```
-    4. The fixed-width integers (`cstdint` in `C++11`)
-        |Type     |Length       |
+    4. The fixed-width integers (`cstdint` in `C++11`)  
+    
+        |Type|Length|
         |---------|------|
         |int8_t	  |1 byte signed|
         |uint8_t	|1 byte unsigned|
