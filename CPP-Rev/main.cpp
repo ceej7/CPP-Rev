@@ -1,4 +1,6 @@
 #include <iostream>
+#include <iomanip>
+#include <bitset>
 #include "addA.h"
 #include "addB.h"
 
@@ -40,6 +42,54 @@ int main()
 	//int nValue0{ 0 };
 	//int nValue1{ 1 };
 	//int nValueNar{ 4.5 };//narrow converting
+
+	////Round Issue
+	//double d(0.1);
+	//std::cout << d << std::endl; // use default cout precision of 6
+	//std::cout << std::setprecision(17);
+	//std::cout << d << std::endl;
+	//double d2(0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1); // should equal 1.0
+	//std::cout << d2 << std::endl;
+
+	////char
+	//char ch(97);
+	//std::cout << ch << std::endl;
+	//std::cout << static_cast<int>(ch) << std::endl;
+	//std::cout << ch << std::endl;
+
+	//bitset
+	// Define 8 separate bit flags (these can represent whatever you want)
+	const unsigned char option0 = 1 << 0; // 0000 0001 
+	const unsigned char option1 = 1 << 1; // 0000 0010
+	const unsigned char option2 = 1 << 2; // 0000 0100
+	const unsigned char option3 = 1 << 3; // 0000 1000
+	const unsigned char option4 = 1 << 4; // 0001 0000
+	const unsigned char option5 = 1 << 5; // 0010 0000
+	const unsigned char option6 = 1 << 6; // 0100 0000
+	const unsigned char option7 = 1 << 7; // 1000 0000
+
+	std::bitset<8> bits(option1 | option2); // start with option 1 and 2 turned on
+	std::bitset<8> morebits(0x3); // start with bit pattern 0000 0011
+	std::cout << bits << std::endl;
+	std::cout << morebits << std::endl;
+
+	//const int option0 = 0;
+	//const int option1 = 1;
+	//const int option2 = 2;
+	//const int option3 = 3;
+	//const int option4 = 4;
+	//const int option5 = 5;
+	//const int option6 = 6;
+	//const int option7 = 7;
+
+	//std::bitset<8> bits(0x2); // we need 8 bits, start with bit pattern 0000 0010
+	//bits.set(option4); // set bit 4 to 1 (now we have 0001 0010)
+	//bits.flip(option5); // flip bit 5 (now we have 0011 0010) 0-1 and vice versa
+	//bits.reset(option5); // set bit 5 back to 0 (now we have 0001 0010)
+
+	//std::cout << "Bit 4 has value: " << bits.test(option4) << '\n';
+	//std::cout << "Bit 5 has value: " << bits.test(option5) << '\n';
+	//std::cout << "All the bits: " << bits << '\n';
 
 	system("pause");
 	return 0;
