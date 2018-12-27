@@ -18,6 +18,7 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 8. Relational operator - floating point
 9. Two complements
 10. `std::bitset` 
+## Part4. [Variable Scope and More Types](../md/Chapter04AdvVarAndType.md)
 ## Reference
 Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
 * [LearnCPP.com](https://www.learncpp.com/cpp-tutorial/introduction-to-cplusplus/)

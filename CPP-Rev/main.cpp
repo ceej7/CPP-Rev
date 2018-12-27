@@ -3,7 +3,7 @@
 #include <bitset>
 #include "addA.h"
 #include "addB.h"
-
+#include "constants.h"
 //call stack issue
 void CallC()
 {
@@ -105,7 +105,7 @@ int main()
 	//std::cout << "B value is: " << static_cast<int>((pixel&bBits) >> 8 ) << std::endl;
 	//std::cout << "A value is: " << static_cast<int>((pixel&aBits) >> 0 ) << std::endl;
 
-
+	std::cout << Constants::pi << std::endl;
 
 	system("pause");
 	return 0;

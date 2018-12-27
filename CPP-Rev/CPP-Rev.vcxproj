@@ -118,11 +118,14 @@
   <ItemGroup>
     <ClCompile Include="addA.cpp" />
     <ClCompile Include="addB.cpp" />
+    <ClCompile Include="constants.cpp" />
+    <ClCompile Include="global.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addA.h" />
     <ClInclude Include="addB.h" />
+    <ClInclude Include="constants.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
