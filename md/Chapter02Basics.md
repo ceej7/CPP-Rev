@@ -32,7 +32,7 @@
         }
         ```
 4. Headfiles
-   1. First, header guard
+   - First, header guard
       ```C++
       #ifndef ADD_H //any unique name
       #define ADD_H //if not define, define it to prevent multi-define
@@ -45,8 +45,8 @@
         ```C++
         #pragma once
         ```
-   2. However, consider the another file `addB.cpp` with `add` function. 
-   3. Link Error: multiple `add` function.------->Solution : `namespace`
+   - However, consider the another file `addB.cpp` with `add` function. 
+   - Link Error: multiple `add` function.------->Solution : `namespace`
       - `main.cpp`
         ```C++
         #include <iostream>
@@ -91,7 +91,7 @@
           return x + y;
         }
         ```
-   4. Why do we include `.h` instread of `.cpp`? [See reference](https://stackoverflow.com/questions/19547091/including-cpp-files)
+   - Why do we include `.h` instread of `.cpp`? [See reference](https://stackoverflow.com/questions/19547091/including-cpp-files)
         - What `include` does is copying all the contents from the file included.
         - Example:
            ```C++
@@ -107,6 +107,6 @@
            }
            ```
          - Thus, `foo` function exists in both main.cpp and foop.cpp, duplicated.
-    5. `< >` or `" "`?
+    - `< >` or `" "`?
         - Use angled brackets `< >` to include header files that come with the compiler. 
         - Use double quotes `" "` to include any other header files.

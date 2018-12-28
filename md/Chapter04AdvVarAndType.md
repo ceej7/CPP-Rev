@@ -94,3 +94,46 @@ int main()
         ```C++
         namespace Boo = Foo::Goo;
         ``` 
+6. `std::string`
+   - Init
+        ```C++
+        #include <string>
+        std::string myName("Alex");
+        myName = "John";
+        ```
+    - I/O
+      - Combine `std::cin` and `std::getline`
+        ```C++
+        #include <string>
+        #include <iostream>
+        
+        int main()
+        {
+            std::cout << "Pick 1 or 2: ";
+            int choice { 0 };
+            std::cin >> choice;
+            //std::cin.ignore(32767, '\n'); // ignore up to 32767 characters until a \n is removed
+
+            std::cout << "Now enter your name: ";
+            std::string name;
+            std::getline(std::cin, name);
+        
+            std::cout << "Hello, " << name << ", you picked " << choice << '\n';
+        
+            return 0;
+        }
+        ```
+      - With out `std::cin.ignore(32767,'\n');`, the `std::cin` will catch the `\n` but instead of being captured in the `choice`, it is stuck in the input stream. When the `std::getline` is called, it is extracted.
+      - As a result, here is the i/o pair
+        > Input:  
+        > 1  
+        > Joy  
+        > Output:  
+        > 1  
+        > `\n`
+      - Technically right one
+        ```C++
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // ignore unlimited characters until a \n is removed
+        ```
+7. Enumerator values
+

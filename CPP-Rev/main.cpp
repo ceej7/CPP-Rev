@@ -38,7 +38,7 @@ int main()
 	//std::cout << sizeof(char16_t) << std::endl;
 	//std::cout << sizeof(char32_t) << std::endl;
 
-	//uniform initial try
+	//uniform initial tdry
 	//int nValue0{ 0 };
 	//int nValue1{ 1 };
 	//int nValueNar{ 4.5 };//narrow converting
