@@ -4,6 +4,7 @@
 #include "addA.h"
 #include "addB.h"
 #include "constants.h"
+#include "RandGen.h"
 //call stack issue
 void CallC()
 {
@@ -22,6 +23,73 @@ void CallA()
 	CallC();
 }
 
+auto autotest(int a, int b) -> int
+{
+	return a + b;
+}
+enum Animal
+{
+	ANIMAL_CAT = -3,
+	ANIMAL_DOG, // assigned -2
+	ANIMAL_PIG, // assigned -1
+	ANIMAL_HORSE = 5,
+	ANIMAL_GIRAFFE = 5, // shares same value as ANIMAL_HORSE
+	ANIMAL_CHICKEN // assigned 6
+};
+char getOperator()
+{
+	while (true) // Loop until user enters a valid input
+	{
+		std::cout << "Enter one of the following: +, -, *, or /: ";
+		char op;
+		std::cin >> op;
+		std::cin.ignore(32767, '\n');
+		// Check whether the user entered meaningful input
+		if (op == '+' || op == '-' || op == '*' || op == '/')
+			return op; // return it to the caller
+		else // otherwise tell the user what went wrong
+			std::cout << "Oops, that input is invalid.  Please try again.\n";
+	} // and try again
+}
+double getDouble()
+{
+	while (true) // Loop until user enters a valid input
+	{
+		std::cout << "Enter a double value: ";
+		double x;
+		std::cin >> x;
+
+		// Check for failed extraction
+		if (std::cin.fail()) // has a previous extraction failed?
+		{
+			// yep, so let's handle the failure
+			std::cin.clear(); // put us back in 'normal' operation mode
+			std::cin.ignore(32767, '\n'); // and remove the bad input
+			std::cout << "Oops, that input is invalid.  Please try again.\n";
+		}
+		else
+		{
+			std::cin.ignore(32767, '\n'); // remove any extraneous input
+
+			// the user can't enter a meaningless double value, so we don't need to worry about validating that
+			return x;
+		}
+	}
+}
+void printResult(double x, char op, double y)
+{
+	if (op == '+')
+		std::cout << x << " + " << y << " is " << x + y << '\n';
+	else if (op == '-')
+		std::cout << x << " - " << y << " is " << x - y << '\n';
+	else if (op == '*')
+		std::cout << x << " * " << y << " is " << x * y << '\n';
+	else if (op == '/')
+		std::cout << x << " / " << y << " is " << x / y << '\n';
+	else // Being robust means handling unexpected parameters as well, even though getOperator() guarantees op is valid in this particular program
+		std::cout << "Something went wrong: printResult() got an invalid operator.";
+
+}
 
 int main()
 {
@@ -105,7 +173,52 @@ int main()
 	//std::cout << "B value is: " << static_cast<int>((pixel&bBits) >> 8 ) << std::endl;
 	//std::cout << "A value is: " << static_cast<int>((pixel&aBits) >> 0 ) << std::endl;
 
-	std::cout << Constants::pi << std::endl;
+	////contanst issue
+	//std::cout << Constants::pi << std::endl;
+
+	//enum classes
+	//enum Color
+	//{
+	//	RED, // RED is placed in the same scope as Color
+	//	BLUE
+	//};
+
+	//enum Fruit
+	//{
+	//	BANANA, // BANANA is placed in the same scope as Fruit
+	//	APPLE
+	//};
+	//enum class FruitClass
+	//{
+	//	BANANA, // BANANA is placed in the same scope as Fruit
+	//	APPLE
+	//};
+
+	//Color color = RED; // Color and RED can be accessed in the same scope (no prefix needed)
+	//Fruit fruit = BANANA; // Fruit and BANANA can be accessed in the same scope (no prefix needed)
+
+	//if (color == fruit) // The compiler will compare a and b as integers
+	//	std::cout << "color and fruit are equal\n"; // and find they are equal!
+	//else
+	//	std::cout << "color and fruit are not equal\n";
+
+	////auto issue
+	//std::cout << autotest(1, 2) << std::endl;
+
+	////Rand issue
+	//RandGen randGen;
+	//std::cout << randGen.getRand(1, 6) << std::endl;
+	//std::cout << randGen.getRand(1, 6) << std::endl;
+	//std::cout << randGen.getRand(1, 6) << std::endl;
+
+	////validate error input
+	//double x = getDouble();
+	//char op = getOperator();
+	//double y = getDouble();
+
+	//printResult(x, op, y);
+
+
 
 	system("pause");
 	return 0;

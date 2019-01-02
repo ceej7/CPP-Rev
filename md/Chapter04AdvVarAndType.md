@@ -136,4 +136,90 @@ int main()
         std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // ignore unlimited characters until a \n is removed
         ```
 7. Enumerator values
+    - Special cases
+        ```C++
+        enum Animal
+        {
+            ANIMAL_CAT = -3,
+            ANIMAL_DOG, // assigned -2
+            ANIMAL_PIG, // assigned -1
+            ANIMAL_HORSE = 5,
+            ANIMAL_GIRAFFE = 5, // shares same value as ANIMAL_HORSE
+            ANIMAL_CHICKEN // assigned 6
+        }
+    - Enum class - **Strong Type**
+        ```C++
+        enum class Color
+        {
+            RED,BLUE
+        }
+        std::cout << Color::RED<<std::endl;
+        ```
+8. Typedefs and type alias
+    - typedef
+        ```C++
+        typedef double distance_t;
+        ```
+    - type alias
+        ```C++
+        using distance_t = double;
+        ```
+9. Struct
+    - Type
+        ```C++
+        struct Employee
+        {
+            short id;
+            int age;
+            double wage;
+        };
+        ```
+    - Initializing structs
+        ```C++
+        Employee joe = { 1, 32, 60000.0 }; // joe.id = 1, joe.age = 32, joe.wage = 60000.0
+        Employee frank = { 2, 28 }; // frank.wage = 0.0 (default initialization)
+        ```
+    - Non static member initialization
+    - incompatible with the initializer list (C++11)
+        ```C++
+        struct Rectangle
+        {
+            double length = 1.0;
+            double width = 1.0;
+        };
+
+        int main()
+        {
+            Rectangle x; // length = 1.0, width = 1.0
+
+            // uniform initialization 
+            // not allowed with non-static initialization
+            //Rectangle x{ 2.0, 2.0 }; 
+            
+            x.length = 2.0; // you can assign other values like normal
+
+            return 0;
+        }
+        ```
+    - Struct size and data alignment
+        ```C++
+        struct Employee
+        {
+            short id; // size 2
+            int age;  // size 4
+            double wage;// size 8
+        };//size 16!=2+4+8
+        ```
+10. The auto keyword (C++11)
+    - `auto`
+        ```C++
+        auto d = 5.0; 
+        auto i = 1 + 2;
+        ```
+    - Trailing return type syntax in C++11
+        ```C++
+        //int add(int x, int y);
+        auto add(int x, int y) -> int;
+        ```
+    
 

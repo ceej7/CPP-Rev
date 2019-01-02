@@ -121,11 +121,13 @@
     <ClCompile Include="constants.cpp" />
     <ClCompile Include="global.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="RandGen.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="addA.h" />
     <ClInclude Include="addB.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="RandGen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

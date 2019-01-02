@@ -19,6 +19,26 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 9. Two complements
 10. `std::bitset` 
 ## Part4. [Variable Scope and More Types](./md/Chapter04AdvVarAndType.md)
+1. Global scope operator (`::`)
+2. Internal and external linkage via the static and extern keywords
+3. Forward declarations
+4. Global symbolic constants
+5. Namespace
+6. `std::string`
+7. Enumerator values
+8. Typedefs and type alias
+9. Struct
+10. The auto keyword (C++11)
+## Part5. [Control Flow](./md/Chapter05ControlFlow.md)
+1. If statement
+2. Switch
+3. ~~GoTo~~(not recommended)
+4. While
+5. Do while
+6. For
+7. Break and continue
+8. Random number generation(`PRNG`)
+9. std::cin, buffers, and extraction
 ## Reference
 Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
 * [LearnCPP.com](https://www.learncpp.com/cpp-tutorial/introduction-to-cplusplus/)
