@@ -1,10 +1,14 @@
 #include <iostream>
 #include <iomanip>
 #include <bitset>
+#include <cstring>
 #include "addA.h"
 #include "addB.h"
 #include "constants.h"
 #include "RandGen.h"
+
+#define __STDC_WANT_LIB_EXT1__ 1
+
 //call stack issue
 void CallC()
 {
@@ -90,6 +94,17 @@ void printResult(double x, char op, double y)
 		std::cout << "Something went wrong: printResult() got an invalid operator.";
 
 }
+namespace IndexSpace
+{
+	enum indexEnum
+	{
+		OneIndex,
+		TwoIndex,
+		ThreeIndex,
+		MaxIndex
+	};
+}
+
 
 int main()
 {
@@ -218,6 +233,12 @@ int main()
 
 	//printResult(x, op, y);
 
+	//int ary[IndexSpace::MaxIndex];
+
+	char source[] = "Copy";
+	char dest[]="abcdefg"; // note that the length of dest is only 5 chars!
+	strcpy_s(dest, 8, source); // An runtime error will occur in debug mode
+	std::cout << dest;
 
 
 	system("pause");

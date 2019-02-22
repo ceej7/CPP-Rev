@@ -39,6 +39,9 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 7. Break and continue
 8. Random number generation(`PRNG`)
 9. std::cin, buffers, and extraction
+## Part6. [Arrays, Strings, Pointers, and References](./md/Chapter06Array.md)
+1. Array Part1
+2. 
 ## Reference
 Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
 * [LearnCPP.com](https://www.learncpp.com/cpp-tutorial/introduction-to-cplusplus/)

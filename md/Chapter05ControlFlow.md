@@ -67,73 +67,73 @@
     >- **No** data -> the user is asked to input data for extraction. When the user hits enter, a ‘\n’ character will be placed in the input buffer.  
     >- operator`>>` extracts **as much** data from the input buffer as it can into the variable (**ignoring any `leading` whitespace characters, such as spaces, tabs, or ‘\n’**).  
    2. Validate input
-1. Case 1. Extraction succeeds but input is meaningless
-```C++
-//Enter a double value: 5
-//Enter one of the following: +, -, *, or /: k
-//Enter a double value: 7
-//Solution
-char getOperator()
-{
-    while (true) // Loop until user enters a valid input
-    {
-        std::cout << "Enter one of the following: +, -, *, or /: ";
-        char op;
-        std::cin >> op;
- 
-        // Check whether the user entered meaningful input
-        if (op == '+' || op == '-' || op == '*' || op == '/')    
-            return op; // return it to the caller
-        else // otherwise tell the user what went wrong
-            std::cout << "Oops, that input is invalid.  Please try again.\n";
-    } // and try again
-}
-```
-2. Case 2. Extraction succeeds but with extraneous input
-```C++
-//Enter a double value: 5*7
-//Enter one of the following: +, -, *, or /: Enter a double value: 5 * 7 is 35
-//Solution
-double getDouble()
-{
-    std::cout << "Enter a double value: ";
-    double x;
-    std::cin >> x;
-    std::cin.ignore(32767, '\n'); // clear (up to 32767) characters out of the buffer until a '\n' character is removed
-    return x;
-}
-```
-3. Case 3. Extraction fails
-```C++
-//Enter a double value: a
-//Solution
-double getDouble()
-{
-    while (true) // Loop until user enters a valid input
-    {
-        std::cout << "Enter a double value: ";
-        double x;
-        std::cin >> x;
- 
-        if (std::cin.fail()) // has a previous extraction failed?
+   3. Case 1. Extraction succeeds but input is meaningless
+       ```C++
+       //Enter a double value: 5
+       //Enter one of the following: +, -, *, or /: k
+       //Enter a double value: 7
+       //Solution
+       char getOperator()
+       {
+           while (true) // Loop until user enters a valid input
+           {
+               std::cout << "Enter one of the following: +, -, *, or /: ";
+               char op;
+               std::cin >> op;
+       
+               // Check whether the user entered meaningful input
+               if (op == '+' || op == '-' || op == '*' || op == '/')    
+                   return op; // return it to the caller
+               else // otherwise tell the user what went wrong
+                   std::cout << "Oops, that input is invalid.  Please try again.\n";
+           } // and try again
+       }
+       ```
+   4. Case 2. Extraction succeeds but with extraneous input
+        ```C++
+        //Enter a double value: 5*7
+        //Enter one of the following: +, -, *, or /: Enter a double value: 5 * 7 is 35
+        //Solution
+        double getDouble()
         {
-            // yep, so let's handle the failure
-            std::cin.clear(); // put us back in 'normal' operation mode
-            std::cin.ignore(32767,'\n'); // and remove the bad input
-        }
-        else // else our extraction succeeded
-        {
+            std::cout << "Enter a double value: ";
+            double x;
+            std::cin >> x;
             std::cin.ignore(32767, '\n'); // clear (up to 32767) characters out of the buffer until a '\n' character is removed
-            return x; // so return the value we extracted
+            return x;
         }
-    }
-}
-```
-4. Case 4. Extraction succeeds but the user overflows a numeric value
-```C++
-//Enter a number between -32768 and 32767: 40000
-//Solution
-std::int16_t x { 0 }; // x is 16 bits, holds from -32768 to 32767
-    std::cout << "Enter a number between -32768 and 32767: ";
-    std::cin >> x;
-```
+        ```
+   5.  Case 3. Extraction fails
+        ```C++
+        //Enter a double value: a
+        //Solution
+        double getDouble()
+        {
+            while (true) // Loop until user enters a valid input
+            {
+                std::cout << "Enter a double value: ";
+                double x;
+                std::cin >> x;
+            
+                if (std::cin.fail()) // has a previous extraction failed?
+                {
+                    // yep, so let's handle the failure
+                    std::cin.clear(); // put us back in 'normal' operation mode
+                    std::cin.ignore(32767,'\n'); // and remove the bad input
+                }
+                else // else our extraction succeeded
+                {
+                    std::cin.ignore(32767, '\n'); // clear (up to 32767) characters out of the buffer until a '\n' character is removed
+                    return x; // so return the value we extracted
+                }
+            }
+        }
+        ```
+   4. Case 4. Extraction succeeds but the user overflows a numeric value
+        ```C++
+        //Enter a number between -32768 and 32767: 40000
+        //Solution
+        std::int16_t x { 0 }; // x is 16 bits, holds from -32768 to 32767
+            std::cout << "Enter a number between -32768 and 32767: ";
+            std::cin >> x;
+        ```
