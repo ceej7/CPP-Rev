@@ -40,8 +40,21 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 8. Random number generation(`PRNG`)
 9. std::cin, buffers, and extraction
 ## Part6. [Arrays, Strings, Pointers, and References](./md/Chapter06Array.md)
-1. Array Part1
-2. 
+1. Array
+2. C-style strings
+3. Pointers
+4. C-style string symbolic constants
+5. Dynamic memory allocation with new and delete
+6. Dynamically allocating arrays
+7. Pointers and const
+8. Reference variables
+9. Reference and const
+10. Member selection with pointers and references
+11. `For-each` loops - C++11
+12. Void pointers
+13. **Pointers to pointers and dynamic multidimensional arrays**
+14. An introduction to std::array C++11
+15. An introduction to std::vector
 ## Reference
 Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
 * [LearnCPP.com](https://www.learncpp.com/cpp-tutorial/introduction-to-cplusplus/)

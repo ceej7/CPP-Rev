@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <bitset>
 #include <cstring>
+#include <vector>
 #include "addA.h"
 #include "addB.h"
 #include "constants.h"
@@ -235,12 +236,22 @@ int main()
 
 	//int ary[IndexSpace::MaxIndex];
 
-	char source[] = "Copy";
-	char dest[]="abcdefg"; // note that the length of dest is only 5 chars!
-	strcpy_s(dest, 8, source); // An runtime error will occur in debug mode
-	std::cout << dest;
+	//char source[] = "Copy";
+	//char dest[]="abcdefg"; // note that the length of dest is only 5 chars!
+	//strcpy_s(dest, 8, source); // An runtime error will occur in debug mode
+	//std::cout << dest;
 
+	/*int value = 5;
+	int &ref1 = value;
+	std::cout << ref1 << std::endl;
 
-	system("pause");
-	return 0;
+	const int &ref2 = 6;
+	std::cout << ref2 << std::endl;*/
+
+	//int(*array1)[5] = new int[10][5];
+	//
+	//int **array2 = new int*[10]; // allocate an array of 10 int pointers ¡ª these are our rows
+	//for (int count = 0; count < 10; ++count)
+	//	array2[count] = new int[5];
+
 }
