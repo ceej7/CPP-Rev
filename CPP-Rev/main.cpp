@@ -7,7 +7,7 @@
 #include "addB.h"
 #include "constants.h"
 #include "RandGen.h"
-
+#include <cstdarg>
 #define __STDC_WANT_LIB_EXT1__ 1
 
 //call stack issue
@@ -32,6 +32,7 @@ auto autotest(int a, int b) -> int
 {
 	return a + b;
 }
+
 enum Animal
 {
 	ANIMAL_CAT = -3,
@@ -41,6 +42,7 @@ enum Animal
 	ANIMAL_GIRAFFE = 5, // shares same value as ANIMAL_HORSE
 	ANIMAL_CHICKEN // assigned 6
 };
+
 char getOperator()
 {
 	while (true) // Loop until user enters a valid input
@@ -106,6 +108,129 @@ namespace IndexSpace
 	};
 }
 
+class ConstTest
+{
+public:
+	int a = 1;
+	int b = 2;
+	void modify()
+	{
+		a = 2;
+		b = 3;
+	}
+	int getA() const
+	{
+		return a;
+	}
+	void modify(int _a, int _b)
+	{
+		a = _a;
+		b = _b;
+	}
+	ConstTest(const ConstTest& c)
+	{
+		std::cout << static_cast<void*>(this) << " copied" << std::endl;
+	}
+	ConstTest* operator=(const ConstTest& c)
+	{
+		std::cout << static_cast<void*>(this) << " assigned from"<< (void*)(&c) << std::endl;
+		return this;
+	}
+	ConstTest()
+	{
+		std::cout << static_cast<void*>(this) << " created" << std::endl;
+	}
+	~ConstTest()
+	{
+		std::cout << static_cast<void*>(this) << " released" << std::endl;
+	}
+};
+
+ConstTest returnbyVal()
+{
+	ConstTest c;
+	return c;
+}
+
+void foo(int n)
+{
+	int c = 0;
+	if (n == 0) return;
+	else
+	{
+		std::cout <<"c: "<<&c<<"        "<< (void *)foo << std::endl;
+		foo(n - 1);
+	}
+}
+
+// Note our user-defined comparison is the third parameter
+void selectionSort(int *array, int size, bool(*comparisonFcn)(int, int))
+{
+	// Step through each element of the array
+	for (int startIndex = 0; startIndex < size; ++startIndex)
+	{
+		// bestIndex is the index of the smallest/largest element we've encountered so far.
+		int bestIndex = startIndex;
+
+		// Look for smallest/largest element remaining in the array (starting at startIndex+1)
+		for (int currentIndex = startIndex + 1; currentIndex < size; ++currentIndex)
+		{
+			// If the current element is smaller/larger than our previously found smallest
+			if ((*comparisonFcn)(array[bestIndex], array[currentIndex])) // COMPARISON DONE HERE
+				// This is the new smallest/largest number for this iteration
+				bestIndex = currentIndex;
+		}
+
+		// Swap our start element with our smallest/largest element
+		std::swap(array[startIndex], array[bestIndex]);
+	}
+}
+
+// Here is a comparison function that sorts in ascending order
+// (Note: it's exactly the same as the previous ascending() function)
+bool ascending(int x, int y)
+{
+	return x > y; // swap if the first element is greater than the second
+}
+
+// Here is a comparison function that sorts in descending order
+bool descending(int x, int y)
+{
+	return x < y; // swap if the second element is greater than the first
+}
+
+// This function prints out the values in the array
+void printArray(int *array, int size)
+{
+	for (int index = 0; index < size; ++index)
+		std::cout << array[index] << " ";
+	std::cout << '\n';
+}
+
+double findAverage(int count, ...)
+{
+	double sum = 0;
+
+	// We access the ellipsis through a va_list, so let's declare one
+	va_list list;
+
+	// We initialize the va_list using va_start.  The first parameter is
+	// the list to initialize.  The second parameter is the last non-ellipsis
+	// parameter.
+	va_start(list, count);
+
+	// Loop through all the ellipsis arguments
+	for (int a = 0; a < count; ++a)
+		// We use va_arg to get parameters out of our ellipsis
+		// The first parameter is the va_list we're using
+		// The second parameter is the type of the parameter
+		sum += va_arg(list, int);
+
+	// Cleanup the va_list when we're done.
+	va_end(list);
+
+	return sum / count;
+}
 
 int main()
 {
@@ -254,4 +379,22 @@ int main()
 	//for (int count = 0; count < 10; ++count)
 	//	array2[count] = new int[5];
 
+	//const ConstTest ctest;
+	//std::cout << ctest.getA() << std::endl;
+
+	//ConstTest c;
+	//c = returnbyVal();
+
+	//int array[9] = { 3, 7, 9, 5, 6, 1, 8, 2, 4 };
+
+	//// Sort the array in descending order using the descending() function
+	//selectionSort(array, 9, descending);
+	//printArray(array, 9);
+
+	//// Sort the array in ascending order using the ascending() function
+	//selectionSort(array, 9, ascending);
+	//printArray(array, 9);
+std::cout << findAverage(5, 1, 2, 3, 4, 5) << '\n';
+std::cout << findAverage(6, 1, 2, 3, 4, 5, 6) << '\n';
+	system("PAUSE");
 }

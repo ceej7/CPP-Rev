@@ -55,6 +55,7 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 13. **Pointers to pointers and dynamic multidimensional arrays**
 14. An introduction to std::array C++11
 15. An introduction to std::vector
+## Part7. [Functions](./md/Chapter07Functions.md)
 ## Reference
 Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
 * [LearnCPP.com](https://www.learncpp.com/cpp-tutorial/introduction-to-cplusplus/)
