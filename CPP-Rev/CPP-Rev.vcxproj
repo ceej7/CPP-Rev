@@ -127,6 +127,7 @@
   <ItemGroup>
     <ClInclude Include="addA.h" />
     <ClInclude Include="addB.h" />
+    <ClInclude Include="Auto_ptr.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="RandGen.h" />
   </ItemGroup>

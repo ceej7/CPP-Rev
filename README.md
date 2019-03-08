@@ -56,6 +56,24 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 14. An introduction to std::array C++11
 15. An introduction to std::vector
 ## Part7. [Functions](./md/Chapter07Functions.md)
+1. Function parameters and arguments
+2. Passing arguments by value
+3. Passing arguments by reference
+4. Passing arguments by address
+5. Returning values by value, reference, and address
+6. Inline functions
+7. Function overloading
+8. Default parameters
+9. Function Pointer
+10. stack and heap
+11. std::vector capacity and stack behavior
+12. Recursive
+13. Handling errors, cerr and exit
+14. Assert and static_assert
+15. Command line arguments
+16. Ellipsis 
+## Part8. [Basic object-oriented programming](./md/Chapter08OOP.md)
+## Part15. [Smart Pointer](./md/Chapter15SmartPointer.md)
 ## Reference
 Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
 * [LearnCPP.com](https://www.learncpp.com/cpp-tutorial/introduction-to-cplusplus/)

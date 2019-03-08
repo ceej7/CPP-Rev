@@ -3,11 +3,12 @@
 #include <bitset>
 #include <cstring>
 #include <vector>
+#include <cstdarg>
 #include "addA.h"
 #include "addB.h"
 #include "constants.h"
 #include "RandGen.h"
-#include <cstdarg>
+#include "Auto_ptr.h"
 #define __STDC_WANT_LIB_EXT1__ 1
 
 //call stack issue
@@ -232,6 +233,19 @@ double findAverage(int count, ...)
 	return sum / count;
 }
 
+Auto_ptr4<Resource> generateResource()
+{
+	Auto_ptr4<Resource> res(new Resource);
+	return res; // this return value will invoke the move constructor
+}
+
+Auto_ptr5<Resource> generateResource(Auto_ptr5<Resource> a)
+{
+	//Auto_ptr5<Resource> res(a); //compile error
+	// deleted
+	//return res; // this return value will invoke the move constructor
+}
+
 int main()
 {
 	////namespace issue
@@ -299,7 +313,7 @@ int main()
 	//std::cout << "Bit 4 has value: " << bits.test(option4) << '\n';
 	//std::cout << "Bit 5 has value: " << bits.test(option5) << '\n';
 	//std::cout << "All the bits: " << bits << '\n';
-	
+
 	////An RGB color example
 	//const uint32_t rBits = 0xFF000000;
 	//const uint32_t gBits = 0x00FF0000;
@@ -394,7 +408,33 @@ int main()
 	//// Sort the array in ascending order using the ascending() function
 	//selectionSort(array, 9, ascending);
 	//printArray(array, 9);
-std::cout << findAverage(5, 1, 2, 3, 4, 5) << '\n';
-std::cout << findAverage(6, 1, 2, 3, 4, 5, 6) << '\n';
+	//std::cout << findAverage(5, 1, 2, 3, 4, 5) << '\n';
+	//std::cout << findAverage(6, 1, 2, 3, 4, 5, 6) << '\n';
+
+	//{
+	//	Auto_Ptr1<Resource> ptr(new Resource);
+	//	ptr->sayHi();
+	//}
+	//{
+	//	Auto_Ptr2<Resource> res1(new Resource);
+	//	Auto_Ptr2<Resource> res2(new Resource); // Start as nullptr
+
+	//	std::cout << "res1 is " << (res1.isNull() ? "null\n" : "not null\n");
+	//	std::cout << "res2 is " << (res2.isNull() ? "null\n" : "not null\n");
+
+	//	res2 = res1; // res2 assumes ownership, res1 is set to null
+
+	//	std::cout << "Ownership transferred\n";
+
+	//	std::cout << "res1 is " << (res1.isNull() ? "null\n" : "not null\n");
+	//	std::cout << "res2 is " << (res2.isNull() ? "null\n" : "not null\n");
+	//}
+	// int &&a = 5;
+	//std::cout << a << std::endl;
+	{
+		Auto_ptr4<Resource> mainres;
+		mainres = generateResource(); // this assignment will invoke the move assignment
+	
+	}
 	system("PAUSE");
 }
