@@ -209,11 +209,11 @@
       //Calc calc;
       //calc.add(5).sub(3).mult(4);
       ```
-11. Class code and header files
+10. Class code and header files
     1. Defining member functions outside the class definition
     2. Default parameters
          - Default parameters for member functions should be declared in the class definition (in the header file), where they can be seen by whomever #includes the header.
-12. Const class objects and member functions
+11. Const class objects and member functions
     1. Const classes
        - no attempting to change a member variable directly
        - no calling a member function that attempts to change a member variable
@@ -246,4 +246,188 @@
             std::string& getValue() { return m_value; } // getValue() for non-const objects
          };
          ```
-13.
+12. Friend functions and classes
+    1.  Friend functions
+        -  a function that can access the private members of a class
+        -  either a normal function, or a member function of another class
+    2.  Example 01
+         ```C++
+         class Accumulator
+         {
+         private:
+            int m_value;
+         public:
+            Accumulator() { m_value = 0; } 
+            void add(int value) { m_value += value; }
+            friend void reset(Accumulator &accumulator);
+         };
+         void reset(Accumulator &accumulator)
+         {
+            accumulator.m_value = 0;
+         }
+         ```
+    3.  Multiple friends
+         ```C++
+         //A function can be a friend of more than one class at the same time.
+         class Humidity;
+         
+         class Temperature
+         {
+         private:
+            int m_temp;
+         public:
+            Temperature(int temp=0) { m_temp = temp; }
+         
+            friend void printWeather(const Temperature &temperature, const Humidity &humidity);
+         };
+         
+         class Humidity
+         {
+         private:
+            int m_humidity;
+         public:
+            Humidity(int humidity=0) { m_humidity = humidity; }
+         
+            friend void printWeather(const Temperature &temperature, const Humidity &humidity);
+         };
+         
+         void printWeather(const Temperature &temperature, const Humidity &humidity)
+         {
+            std::cout << "The temperature is " << temperature.m_temp <<
+               " and the humidity is " << humidity.m_humidity << '\n';
+         }
+         ```
+    4.  Friend classes
+         ```C++
+         friend class Display;
+         ```
+    5.  Friend member functions - requires seeing the full declaration of class defining the friend member function
+        1.  Foward declare `Storage`
+        2.  Define `Display`
+        3.  Define `Storage`
+        4.  Define `friend member function of Display`
+            ```C++
+            class Storage; // forward declaration for class Storage
+            
+            class Display
+            {
+            private:
+               bool m_displayIntFirst;
+            
+            public:
+               Display(bool displayIntFirst) { m_displayIntFirst = displayIntFirst; }
+               
+               void displayItem(Storage &storage); // forward declaration above needed for this declaration line
+            };
+            
+            class Storage // full definition of Storage class
+            {
+            private:
+               int m_nValue;
+               double m_dValue;
+            public:
+               Storage(int nValue, double dValue)
+               {
+                  m_nValue = nValue;
+                  m_dValue = dValue;
+               }
+            
+               // Make the Display::displayItem member function a friend of the Storage class (requires seeing the full declaration of class Display, as above)
+               friend void Display::displayItem(Storage& storage);
+            };
+            
+            // Now we can define Display::displayItem, which needs to have seen the full definition of class Storage
+            void Display::displayItem(Storage &storage)
+            {
+               if (m_displayIntFirst)
+                  std::cout << storage.m_nValue << " " << storage.m_dValue << '\n';
+               else // display double first
+                  std::cout << storage.m_dValue << " " << storage.m_nValue << '\n';
+            }
+            ```
+13. Anonymous objects
+    1.  An anonymous object is essentially a value that has no name
+    2.  Anonymous class objects
+         ```C++
+         Cents cents(5); // normal variable
+         Cents(7); // anonymous object
+         ```
+    3.  Example
+         ```C++
+         #include <iostream>
+         
+         class Cents
+         {
+         private:
+            int m_cents;
+         
+         public:
+            Cents(int cents) { m_cents = cents; }
+         
+            int getCents() const { return m_cents; }
+         };
+         
+         Cents add(const Cents &c1, const Cents &c2)
+         {
+            return Cents(c1.getCents() + c2.getCents()); // return anonymous Cents value
+         }
+         
+         int main()
+         {
+             std::cout << "I have " << add(Cents(6), Cents(8)).getCents() << " cents." << std::endl; // print anonymous Cents value
+         
+            return 0;
+         }
+         ```
+14. Nested types in classes
+    1.  Example
+         ```C++
+         class Fruit
+         {
+         public:
+            // Note: nested enum type
+            enum FruitType
+            {
+               APPLE,
+               BANANA,
+               CHERRY
+            };
+         ```
+    2.  **act as a namespace** for any nested types
+    3.  Other types can be nested too
+        1.  typedefs, type aliases, and even other classes
+15. Timing your code
+    1.  `chrono library`
+    2.  Encapsulate a Timer
+         ```C++
+         #include <chrono> // for std::chrono functions
+         
+         class Timer
+         {
+         private:
+            // Type aliases to make accessing nested type easier
+            using clock_t = std::chrono::high_resolution_clock;
+            using second_t = std::chrono::duration<double, std::ratio<1> >;
+            
+            std::chrono::time_point<clock_t> m_beg;
+         
+         public:
+            Timer() : m_beg(clock_t::now())
+            {
+            }
+            
+            void reset()
+            {
+               m_beg = clock_t::now();
+            }
+            
+            double elapsed() const
+            {
+               return std::chrono::duration_cast<second_t>(clock_t::now() - m_beg).count();
+            }
+         };
+         ```
+    3.  A few caveats about timing
+        1.  using a release build target, not a debug build target
+        2.  your timing results will be influenced by other things your system may be doing in the background.
+        3.  be wary of what may change between runs that could impact timing.

@@ -73,6 +73,21 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 15. Command line arguments
 16. Ellipsis 
 ## Part8. [Basic object-oriented programming](./md/Chapter08OOP.md)
+1. Classes and class members
+2. Public vs private access specifiers
+3. Access functions and encapsulation
+4. Constructors
+5. Constructor member initializer lists
+6. Non-static member initialization
+7. Overlapping and delegating constructors
+8. Destructors
+9. The hidden “this” pointer
+10. Class code and header files
+11. Const class objects and member functions
+12. Friend functions and classes
+13. Anonymous objects
+14. Nested types in classes
+15. Timing your code
 ## Part15. [Smart Pointer](./md/Chapter15SmartPointer.md)
 ## Reference
 Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
