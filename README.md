@@ -88,6 +88,7 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 13. Anonymous objects
 14. Nested types in classes
 15. Timing your code
+## Part9. [Overloading](./md/Chapter09Overloading.md)
 ## Part15. [Smart Pointer](./md/Chapter15SmartPointer.md)
 ## Reference
 Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
