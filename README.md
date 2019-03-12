@@ -89,6 +89,22 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 14. Nested types in classes
 15. Timing your code
 ## Part9. [Overloading](./md/Chapter09Overloading.md)
+1. Introduction to operator overloading
+2. Overloading the arithmetic operators using friend functions
+3. Overloading operators using normal functions
+4. Overloading the I/O operators
+5. Overloading operators using member functions
+6. Overloading unary operators +, -, and !
+7. Overloading the comparison operators
+8. Overloading the increment and decrement operators
+9. Overloading the subscript operator
+10. Overloading the parenthesis operator
+11. Overloading typecasts
+12. The copy constructor
+13. copy initialization
+14. Converting constructors, explicit, and delete
+15. Overloading the assignment operator
+16. Shallow vs. deep copying
 ## Part15. [Smart Pointer](./md/Chapter15SmartPointer.md)
 ## Reference
 Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
