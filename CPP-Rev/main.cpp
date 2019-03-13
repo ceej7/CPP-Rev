@@ -9,6 +9,8 @@
 #include "constants.h"
 #include "RandGen.h"
 #include "Auto_ptr.h"
+#include "ConstTest.h"
+#include "Base.h"
 #define __STDC_WANT_LIB_EXT1__ 1
 
 //call stack issue
@@ -59,6 +61,7 @@ char getOperator()
 			std::cout << "Oops, that input is invalid.  Please try again.\n";
 	} // and try again
 }
+
 double getDouble()
 {
 	while (true) // Loop until user enters a valid input
@@ -84,6 +87,7 @@ double getDouble()
 		}
 	}
 }
+
 void printResult(double x, char op, double y)
 {
 	if (op == '+')
@@ -98,6 +102,7 @@ void printResult(double x, char op, double y)
 		std::cout << "Something went wrong: printResult() got an invalid operator.";
 
 }
+
 namespace IndexSpace
 {
 	enum indexEnum
@@ -108,44 +113,6 @@ namespace IndexSpace
 		MaxIndex
 	};
 }
-
-class ConstTest
-{
-public:
-	int a = 1;
-	int b = 2;
-	void modify()
-	{
-		a = 2;
-		b = 3;
-	}
-	int getA() const
-	{
-		return a;
-	}
-	void modify(int _a, int _b)
-	{
-		a = _a;
-		b = _b;
-	}
-	ConstTest(const ConstTest& c)
-	{
-		std::cout << static_cast<void*>(this) << " copied" << std::endl;
-	}
-	ConstTest* operator=(const ConstTest& c)
-	{
-		std::cout << static_cast<void*>(this) << " assigned from"<< (void*)(&c) << std::endl;
-		return this;
-	}
-	ConstTest()
-	{
-		std::cout << static_cast<void*>(this) << " created" << std::endl;
-	}
-	~ConstTest()
-	{
-		std::cout << static_cast<void*>(this) << " released" << std::endl;
-	}
-};
 
 ConstTest returnbyVal()
 {
@@ -244,6 +211,7 @@ Auto_ptr5<Resource> generateResource(Auto_ptr5<Resource> a)
 	//Auto_ptr5<Resource> res(a); //compile error
 	// deleted
 	//return res; // this return value will invoke the move constructor
+	return 0;
 }
 
 int main()
@@ -431,10 +399,15 @@ int main()
 	//}
 	// int &&a = 5;
 	//std::cout << a << std::endl;
-	{
-		Auto_ptr4<Resource> mainres;
-		mainres = generateResource(); // this assignment will invoke the move assignment
+	//{
+	//	Auto_ptr4<Resource> mainres;
+	//	mainres = generateResource(); // this assignment will invoke the move assignment
+	//
+	//}
 	
-	}
+	Base *ptr = new Derived();
+	ptr->getId();
+	Derived obj;
+	obj.getId();
 	system("PAUSE");
 }

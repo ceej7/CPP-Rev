@@ -128,7 +128,9 @@
     <ClInclude Include="addA.h" />
     <ClInclude Include="addB.h" />
     <ClInclude Include="Auto_ptr.h" />
+    <ClInclude Include="Base.h" />
     <ClInclude Include="constants.h" />
+    <ClInclude Include="ConstTest.h" />
     <ClInclude Include="RandGen.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

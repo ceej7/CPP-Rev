@@ -50,5 +50,11 @@
     <ClInclude Include="Auto_ptr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ConstTest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Base.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

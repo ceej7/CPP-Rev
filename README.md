@@ -105,6 +105,36 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 14. Converting constructors, explicit, and delete
 15. Overloading the assignment operator
 16. Shallow vs. deep copying
+## Part10. [Object relationships](./md/Chapter10Relation.md)
+1. Object relationships
+2. Composition
+3. Aggregation
+4. Association
+5. Dependencies
+6. Container classes
+7. std::initializer_list
+## Part10. [Inheritance](./md/Chapter11Inheritance.md)
+1. Introduction to inheritance
+2. Basic inheritance in C++
+3. Order of construction of derived classes
+4. Constructors and initialization of derived classes
+5. Inheritance and access specifiers
+6. Adding new functionality to a derived class
+7. Calling inherited functions and overriding behavior
+8. Hiding inherited functionality
+9. Multiple inheritance
+## Part11. [Virtual Functions](./md/Chapter12Virtual.md)
+1. Pointers and references to the base class of derived objects
+2. Virtual functions and polymorphism
+3. The override and final specifiers, and covariant return types
+4. Virtual destructors, virtual assignment, and overriding virtualization
+5. Early binding and late binding
+6. The virtual table
+7. Pure virtual functions, abstract base classes, and interface classes
+8. Virtual base classes
+9. Object slicing
+10. Dynamic casting
+11. Printing inherited classes using operator<<
 ## Part15. [Smart Pointer](./md/Chapter15SmartPointer.md)
 ## Reference
 Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
