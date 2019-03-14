@@ -56,5 +56,8 @@
     <ClInclude Include="Base.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="TemplateSample.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

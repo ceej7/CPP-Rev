@@ -113,7 +113,7 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 5. Dependencies
 6. Container classes
 7. std::initializer_list
-## Part10. [Inheritance](./md/Chapter11Inheritance.md)
+## Part11. [Inheritance](./md/Chapter11Inheritance.md)
 1. Introduction to inheritance
 2. Basic inheritance in C++
 3. Order of construction of derived classes
@@ -123,7 +123,7 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 7. Calling inherited functions and overriding behavior
 8. Hiding inherited functionality
 9. Multiple inheritance
-## Part11. [Virtual Functions](./md/Chapter12Virtual.md)
+## Part12. [Virtual Functions](./md/Chapter12Virtual.md)
 1. Pointers and references to the base class of derived objects
 2. Virtual functions and polymorphism
 3. The override and final specifiers, and covariant return types
@@ -135,8 +135,40 @@ Advanced C++ and C++11 new feature review/training. Reviewing C++ with the inten
 9. Object slicing
 10. Dynamic casting
 11. Printing inherited classes using operator<<
+## Part13. [Templates](./md/Chapter13Templates.md)
+1. Function templates
+2. Function template instances
+3. Template classes
+4. Template non-type parameters
+5. Function template specialization
+6. Class template specialization
+7. Partial template specialization
+8. Partial template specialization for pointers
+## Part14. [Exceptions](./md/Chapter14Exceptions.md)
+1. The need for exceptions
+2. Basic exception handling
+3. Exceptions, functions, and stack unwinding
+4. Uncaught exceptions, catch-all handlers, and exception specifiers
+5. Exceptions, classes, and inheritance
+6. Rethrowing exceptions
+7. Function try blocks
+8. Exception dangers and downsides
 ## Part15. [Smart Pointer](./md/Chapter15SmartPointer.md)
+1. Intro to smart pointers and move semantics
+2. R-value references
+3. Move constructors and move assignment
+4. std::move
+5. std::unique_ptr
+6. std::shared_ptr
+7. Circular dependency issues with std::shared_ptr, and std::weak_ptr
+## Part16. [The Standard Template Library](./md/Chapter16STL.md)
+1. The Standard Library
+2. STL containers overview
+3. STL iterators overview
+4. STL algorithms overview
+## Part17. [String](https://www.learncpp.com/cpp-tutorial/17-1-stdstring-and-stdwstring/) - RTFM
+## Part18. [I/O](https://www.learncpp.com/cpp-tutorial/181-input-and-output-io-streams/) - RTFM
 ## Reference
-Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have a programming foundation. As for the material, here you go.
+Learning within online course is not recommended(basically time-consuming). It's better to read reference material if you have some experience. As for the material, here you go.
 * [LearnCPP.com](https://www.learncpp.com/cpp-tutorial/introduction-to-cplusplus/)
    

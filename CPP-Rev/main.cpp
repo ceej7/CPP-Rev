@@ -11,6 +11,7 @@
 #include "Auto_ptr.h"
 #include "ConstTest.h"
 #include "Base.h"
+#include "TemplateSample.h"
 #define __STDC_WANT_LIB_EXT1__ 1
 
 //call stack issue
@@ -405,9 +406,28 @@ int main()
 	//
 	//}
 	
-	Base *ptr = new Derived();
-	ptr->getId();
-	Derived obj;
-	obj.getId();
-	system("PAUSE");
+	//Base *ptr = new Derived();
+	//ptr->getId();
+	//Derived obj;
+	//obj.getId();
+	//system("PAUSE");
+
+	//Temp1<double> dt;
+	//Temp1<int> it;
+
+	//tempFunction(1);
+	//tempFunction(1.1);
+
+	//try {
+	//	B_Excep(-1);
+	//	}
+	//catch (...)
+	//{
+	//	std::cout << "opps" << std::endl;
+	//}
+
+	//std::unique_ptr<Base[]> f1 = std::make_unique<Base[]>(4);
+	//std::cout << f1[0] << f1[1] << f1[2] << f1[3];
+
+	
 }

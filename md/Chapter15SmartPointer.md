@@ -240,3 +240,179 @@
      Auto_ptr5& operator=(const Auto_ptr5& a) = delete;
      ```
      - If you were to try to pass an Auto_ptr5 l-value to a function by value, the compiler would complain that the copy constructor required to initialize the copy constructor argument has been deleted. 
+## std::move
+1. to convert its argument into an r-value.
+    ```C++
+    void swap(T& a, T& b) 
+    { 
+    T tmp { std::move(a) }; // invokes move constructor
+    a = std::move(b); // invokes move assignment
+    b = std::move(tmp); // invokes move assignment
+    }
+    ```
+2. Move functions should always leave your objects in a well-defined state
+## std::unique_ptr  
+1. Definition
+   - std::unique_ptr is the C++11 replacement for std::auto_ptr. It should be used to manage any dynamically allocated object that is not shared by multiple objects. That is, std::unique_ptr should completely own the object it manages, not share that ownership with other classes. std::unique_ptr lives in the <memory> header.
+2. Sample
+    ```C++
+    std::unique_ptr<Resource> res1(new Resource); // Resource created here
+    std::unique_ptr<Resource> res2; // Start as nullptr
+
+    std::cout << "res1 is " << (static_cast<bool>(res1) ? "not null\n" : "null\n");
+    std::cout << "res2 is " << (static_cast<bool>(res2) ? "not null\n" : "null\n");
+
+    // res2 = res1; // Won't compile: copy assignment is disabled
+    res2 = std::move(res1); // res2 assumes ownership, res1 is set to null
+
+    std::cout << "Ownership transferred\n";
+
+    std::cout << "res1 is " << (static_cast<bool>(res1) ? "not null\n" : "null\n");
+    std::cout << "res2 is " << (static_cast<bool>(res2) ? "not null\n" : "null\n");
+    ```
+3. std::unique_ptr and arrays
+   1. std::unique_ptr is smart enough to know whether to use scalar delete or array delete, so std::unique_ptr is okay to use with both scalar objects and arrays
+4. std::make_unique
+    ```C++
+    std::unique_ptr<Fraction> f1 = std::make_unique<Fraction>(3, 5);
+    std::unique_ptr<Fraction[]> f2 = std::make_unique<Fraction[]>(4);
+    ```
+5. The exception safety issue in more detail
+    ```C++
+    some_function(std::unique_ptr<T>(new T), function_that_can_throw_exception());
+    ```  
+   - consider this function
+     - T is newed
+     - function with except executed
+     - throw a exception
+     - memory leak
+   - but with std::make_unique(), the new process is in make_unique(), no memory leak will happen
+6. Returning std::unique_ptr from a function
+   1. std::unique_ptr can be safely returned from a function by value:
+7. Passing std::unique_ptr to a function
+   1. by value - ownership converted
+   2. pass resource itself
+        ```C++
+        void useResource(Resource *res)
+        {
+            if (res)
+                std::cout << *res;
+        }
+        
+        int main()
+        {
+            auto ptr = std::make_unique<Resource>();
+        
+            useResource(ptr.get()); // note: get() used here to get a pointer to the Resource
+        
+            std::cout << "Ending program\n";
+        
+            return 0;
+        }
+        ```
+## std::shared_ptr
+1. std::shared_ptr is meant to solve the case where you need multiple smart pointers co-owning a resource
+2. Sample
+    ```C++
+    class Resource
+    {
+    public:
+        Resource() { std::cout << "Resource acquired\n"; }
+        ~Resource() { std::cout << "Resource destroyed\n"; }
+    };
+    
+    int main()
+    {
+        // allocate a Resource object and have it owned by std::shared_ptr
+        Resource *res = new Resource;
+        std::shared_ptr<Resource> ptr1(res);
+        {
+            std::shared_ptr<Resource> ptr2(ptr1); // use copy initialization to make another std::shared_ptr pointing to the same thing
+    
+            std::cout << "Killing one shared pointer\n";
+        } // ptr2 goes out of scope here, but nothing happens
+    
+        std::cout << "Killing another shared pointer\n";
+    
+        return 0;
+    }
+    ```
+   - **Note: we have to create the second shared pointer from the first one**
+3. std::make_shared
+    ```C++
+    auto ptr1 = std::make_shared<Resource>();
+    {
+        auto ptr2 = ptr1;
+    }
+    ```
+4. Digging into std::shared_ptr
+   1. two pointers internally
+      1. resource being managed
+      2. control block
+5. Shared pointers can be created from unique pointers
+## Circular dependency issues with std::shared_ptr, and std::weak_ptr
+1. Circular references
+   1. Sample
+        ```C++
+        class Person
+        {
+            std::string m_name;
+            std::shared_ptr<Person> m_partner; // initially created empty
+        
+        public:
+                
+            Person(const std::string &name): m_name(name)
+            { 
+                std::cout << m_name << " created\n";
+            }
+            ~Person()
+            {
+                std::cout << m_name << " destroyed\n";
+            }
+        
+            friend bool partnerUp(std::shared_ptr<Person> &p1, std::shared_ptr<Person> &p2)
+            {
+                if (!p1 || !p2)
+                    return false;
+        
+                p1->m_partner = p2;
+                p2->m_partner = p1;
+        
+                std::cout << p1->m_name << " is now partnered with " << p2->m_name << "\n";
+        
+                return true;
+            }
+        };
+        
+        int main()
+        {
+            auto lucy = std::make_shared<Person>("Lucy"); // create a Person named "Lucy"
+            auto ricky = std::make_shared<Person>("Ricky"); // create a Person named "Ricky"
+        
+            partnerUp(lucy, ricky); // Make "Lucy" point to "Ricky" and vice-versa
+        
+            return 0;
+        }
+        ```
+   2. neither Person “Lucy” or “Ricky” have been deallocated
+2. A reductive case
+    ```C++
+    auto ptr1 = std::make_shared<Resource>(); 
+    ptr1->m_ptr = ptr1;
+    ```
+3. So what is std::weak_ptr for anyway?
+   1. A std::weak_ptr is an observer -- it can observe and access the same object as a std::shared_ptr (or other std::weak_ptrs) but it is not considered an owner.
+   2. Fixed Person
+        ```C++
+        class Person
+        {
+            std::string m_name;
+            std::weak_ptr<Person> m_partner;
+        }
+        ```
+4. Using std::weak_ptr
+   1. The downside of std::weak_ptr is that std::weak_ptr are not directly usable (they have no operator->)
+   2. convert to std::shared_ptr by lock() member function
+        ```C++
+        const std::shared_ptr<Person> getPartner() const { return m_partner.lock(); } // use lock() to convert weak_ptr to shared_ptr
+        ```
