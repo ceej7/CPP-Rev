@@ -216,7 +216,6 @@
             return "Alex";
         }
         ```
-        if the "Alex" is not refered by other const pointer, getName will get a dangling pointer(dangerous)
 ## Dynamic memory allocation with new and delete
 1. Static memory allocation
     - static and global variables
