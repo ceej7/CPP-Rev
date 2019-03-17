@@ -80,12 +80,13 @@
 2. The protected access specifier
    1. can access protected base members from derived class
    2. can not access protected members from outside class
-3. Different kinds of inheritance
-    |access specifier|public|protected|private|
-    |---------|---------|---------|---------|
-    |public   |public   |protected|x|
-    |protected|Protected|Protected|x|
-    |private  |private  |private  |x|
+3. Different kinds of inheritance  
+
+   |access specifier|public|protected|private|
+   |---------|---------|---------|---------|
+   |public   |public   |protected|x|
+   |protected|Protected|Protected|x|
+   |private  |private  |private  |x|
 ## Adding new functionality to a derived class
 ## Calling inherited functions and overriding behavior
 1. Calling a base class function
