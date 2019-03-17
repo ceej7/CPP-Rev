@@ -82,7 +82,7 @@
    2. can not access protected members from outside class
 3. Different kinds of inheritance
     |access specifier|public|protected|private|
-    |---------|-------|---|---|
+    |---------|---------|---------|---------|
     |public   |public   |protected|x|
     |protected|Protected|Protected|x|
     |private  |private  |private  |x|
